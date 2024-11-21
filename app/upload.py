@@ -25,26 +25,13 @@ def extract_text_from_pdf(pdf_stream):
             for page in pdf_reader.pages:
                 text = page.extract_text()
                 if text:
-<<<<<<< Updated upstream
-                    text = text.replace('\n', ' ')
-                    text = re.sub(r'([.!?])\s*', r'\1\n', text)
-                    output_file.write(text)
-        print(f"{output_filename} created")
-        
-=======
                     output_file.write(text + "\n")
         print("vault.txt created")
->>>>>>> Stashed changes
     except Exception as e:
         raise Exception(f"Error during text extraction : {e}")
 
 if __name__ == "__main__":
-<<<<<<< Updated upstream
-    google_drive_link = "https://drive.google.com/file/d/1NguvBe7x4_Vw14AOHnPG3Q9-dgjB7dLs/view?usp=sharing"
-    output_txt_path = "vault.txt"
-=======
     google_drive_link = "https://drive.google.com/file/d/1YWxsSgA0X0M1bI0W4-8VXIUoP10S57I8/view?usp=drive_link"
->>>>>>> Stashed changes
 
     try:
         pdf_stream = download_pdf_from_google_drive(google_drive_link)
