@@ -32,7 +32,7 @@
 
 2. **Installer les dépendances :**
     ```bash
-    make requirement
+    make requirements
     ```
 
 3. **Télécharger les modèles Ollama :**
@@ -80,6 +80,8 @@ options:
   --no-rag              Start script with no rag
   --temperature TEMPERATURE
                         Temperature used by Ollama (0-1, default: 0.1)
+  --drivefile DRIVEFILE
+                        Google Drive public file link (default : https://drive.google.com/file/d/1YWxsSgA0X0M1bI0W4-8VXIUoP10S57I8/view?usp=drive_link)
 ```
 
 examples :
@@ -90,6 +92,10 @@ python3 app.py --no-rag
 
 ```bash
 python3 app.py --temperature 0.6
+```
+
+```bash
+python3 app.py --drivefile https://drive.google.com/file/d/1YWxsSgA0X0M1bI0W4-8VXIUoP10S57I8/view?usp=drive_link
 ```
 
 ### Désactiver le venv :
