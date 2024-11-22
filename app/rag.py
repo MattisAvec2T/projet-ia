@@ -27,7 +27,7 @@ def get_relevant_context(rewritten_input, vault_embeddings, vault_content, top_k
     relevant_context = [vault_content[idx].strip() for idx in top_indices]
     return relevant_context
 
-def rewrite_query(user_input_json, conversation_history, ollama_model):
+def rewrite_query(user_input_json, conversation_history, ollama_model, temperature):
     user_input = json.loads(user_input_json)["Query"]
     context = "\n".join([f"{msg['role']}: {msg['content']}" for msg in conversation_history[-2:]])
     prompt = f"""Rewrite the following query by incorporating relevant context from the conversation history.
@@ -52,12 +52,12 @@ def rewrite_query(user_input_json, conversation_history, ollama_model):
         messages=[{"role": "system", "content": prompt}],
         max_tokens=200,
         n=1,
-        temperature=0.1,
+        temperature=temperature,
     )
     rewritten_query = response.choices[0].message.content.strip()
     return json.dumps({"Rewritten Query": rewritten_query})
    
-def ollama_chat(user_input, system_message, vault_embeddings, vault_content, ollama_model, conversation_history):
+def ollama_chat(user_input, system_message, vault_embeddings, vault_content, ollama_model, conversation_history, temperature):
     conversation_history.append({"role": "user", "content": user_input})
     
     if len(conversation_history) > 1:
@@ -65,7 +65,7 @@ def ollama_chat(user_input, system_message, vault_embeddings, vault_content, oll
             "Query": user_input,
             "Rewritten Query": ""
         }
-        rewritten_query_json = rewrite_query(json.dumps(query_json), conversation_history, ollama_model)
+        rewritten_query_json = rewrite_query(json.dumps(query_json), conversation_history, ollama_model, temperature)
         rewritten_query_data = json.loads(rewritten_query_json)
         rewritten_query = rewritten_query_data["Rewritten Query"]
     else:
