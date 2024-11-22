@@ -3,6 +3,7 @@ import os
 import argparse
 import ollama
 from rag import open_file, get_relevant_context, rewrite_query, ollama_chat, client
+from upload import upload
 
 YELLOW = '\033[93m'
 NEON_GREEN = '\033[92m'
@@ -13,21 +14,30 @@ if __name__ == "__main__":
     print(NEON_GREEN + "Parsing command-line arguments..." + RESET_COLOR)
     parser = argparse.ArgumentParser(description="Ollama Chat")
     parser.add_argument("--model", default="llama3", help="Ollama model to use (default: llama3)")
+    parser.add_argument("--rag", action="store_true", default=True, help="Start script with rag (enabled by default)")
+    parser.add_argument("--no-rag", action="store_false", dest="rag", help="Start script with no rag")
     args = parser.parse_args()
 
-    print(NEON_GREEN + "Loading vault content..." + RESET_COLOR)
     vault_content = []
-    if os.path.exists("vault.txt"):
-        with open("vault.txt", "r", encoding='utf-8') as vault_file:
-            vault_content = vault_file.readlines()
-
-    print(NEON_GREEN + "Generating embeddings for the vault content..." + RESET_COLOR)
     vault_embeddings = []
-    for content in vault_content:
-        response = ollama.embeddings(model='mxbai-embed-large', prompt=content)
-        vault_embeddings.append(response["embedding"])
 
-    print(NEON_GREEN + "Converting embeddings to tensor..." + RESET_COLOR)
+    if args.rag :
+        upload()
+        if os.path.exists("vault.txt"):
+            print(NEON_GREEN + "Loading vault content..." + RESET_COLOR)
+            with open("vault.txt", "r", encoding='utf-8') as vault_file:
+                vault_content = vault_file.readlines()
+            print(NEON_GREEN + "Generating embeddings for the vault content..." + RESET_COLOR)
+            for content in vault_content:
+                response = ollama.embeddings(model='mxbai-embed-large', prompt=content)
+                vault_embeddings.append(response["embedding"])
+            print(NEON_GREEN + "Converting embeddings to tensor..." + RESET_COLOR)
+        else:
+            print(NEON_GREEN + "/!\ No vault to embed" + RESET_COLOR)
+    else :
+        print(NEON_GREEN + "No rag" + RESET_COLOR)
+
+
     vault_embeddings_tensor = torch.tensor(vault_embeddings) 
 
     print(NEON_GREEN + "Starting conversation loop..." + RESET_COLOR)
