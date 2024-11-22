@@ -33,9 +33,7 @@ def extract_text_from_pdf(pdf_stream):
     except Exception as e:
         raise Exception(f"Error during text extraction : {e}")
 
-def upload():
-    google_drive_link = "https://drive.google.com/file/d/1YWxsSgA0X0M1bI0W4-8VXIUoP10S57I8/view?usp=drive_link"
-
+def upload(google_drive_link):
     try:
         pdf_stream = download_pdf_from_google_drive(google_drive_link)
 

@@ -17,13 +17,14 @@ if __name__ == "__main__":
     parser.add_argument("--rag", action="store_true", default=True, help="Start script with rag (enabled by default)")
     parser.add_argument("--no-rag", action="store_false", dest="rag", help="Start script with no rag")
     parser.add_argument("--temperature", type=float, default=0.1, help="Temperature used by Ollama (0-1, default: 0.1)")
+    parser.add_argument("--drivefile", type=str, default="https://drive.google.com/file/d/1YWxsSgA0X0M1bI0W4-8VXIUoP10S57I8/view?usp=drive_link", help="Google Drive public file link (default : https://drive.google.com/file/d/1YWxsSgA0X0M1bI0W4-8VXIUoP10S57I8/view?usp=drive_link)")
     args = parser.parse_args()
 
     vault_content = []
     vault_embeddings = []
 
     if args.rag :
-        upload()
+        upload(args.drivefile)
         if os.path.exists("vault.txt"):
             print(NEON_GREEN + "Loading vault content..." + RESET_COLOR)
             with open("vault.txt", "r", encoding='utf-8') as vault_file:
