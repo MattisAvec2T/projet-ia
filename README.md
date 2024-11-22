@@ -9,8 +9,8 @@
 
 1. Clonez le dépôt :
     ```bash
-    git clone https://github.com/MattisAvec2T/oui-transfer.git
-    cd oui-transfer
+    git clone https://github.com/MattisAvec2T/projet-ia.git
+    cd projet-ia
     ```
 
 2 Se déplacer dans /app :
