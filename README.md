@@ -7,10 +7,16 @@
 
 ## Setup
 
-### Se déplacer dans /app :
-```bash
-cd app
-```
+1. Clonez le dépôt :
+    ```bash
+    git clone https://github.com/MattisAvec2T/oui-transfer.git
+    cd oui-transfer
+    ```
+
+2 Se déplacer dans /app :
+    ```bash
+    cd app
+    ```
 
 ### Construire avec Makefile
 
