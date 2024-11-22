@@ -33,7 +33,7 @@ if __name__ == "__main__":
                 vault_embeddings.append(response["embedding"])
             print(NEON_GREEN + "Converting embeddings to tensor..." + RESET_COLOR)
         else:
-            print(NEON_GREEN + "/!\ No vault to embed" + RESET_COLOR)
+            print(NEON_GREEN + "/!\\ No vault to embed" + RESET_COLOR)
     else :
         print(NEON_GREEN + "No rag" + RESET_COLOR)
 
