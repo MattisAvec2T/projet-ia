@@ -92,6 +92,11 @@ python3 app.py --no-rag
 python3 app.py --temperature 0.6
 ```
 
+### Désactiver le venv :
+```bash
+deactivate
+```
+
 ## Auteur
 
 - [Mattis Almeida Lima](https://github.com/MattisAvec2T)
