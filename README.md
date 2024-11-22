@@ -102,7 +102,3 @@ python3 app.py --drivefile https://drive.google.com/file/d/1YWxsSgA0X0M1bI0W4-8V
 ```bash
 deactivate
 ```
-
-## Auteur
-
-- [Mattis Almeida Lima](https://github.com/MattisAvec2T)
