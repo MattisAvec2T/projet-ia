@@ -13,7 +13,7 @@
     cd projet-ia
     ```
 
-2 Se déplacer dans /app :
+2. Se déplacer dans /app :
     ```bash
     cd app
     ```
