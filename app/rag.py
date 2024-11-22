@@ -3,7 +3,6 @@ import ollama
 import json
 from openai import OpenAI
 
-PINK = '\033[95m'
 CYAN = '\033[96m'
 NEON_GREEN = '\033[92m'
 RESET_COLOR = '\033[0m'
@@ -69,8 +68,6 @@ def ollama_chat(user_input, system_message, vault_embeddings, vault_content, oll
         rewritten_query_json = rewrite_query(json.dumps(query_json), conversation_history, ollama_model)
         rewritten_query_data = json.loads(rewritten_query_json)
         rewritten_query = rewritten_query_data["Rewritten Query"]
-        print(PINK + "Original Query: " + user_input + RESET_COLOR)
-        print(PINK + "Rewritten Query: " + rewritten_query + RESET_COLOR)
     else:
         rewritten_query = user_input
     
