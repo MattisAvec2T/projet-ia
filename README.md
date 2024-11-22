@@ -1,5 +1,7 @@
 # Projet IA
 
+Utilise le modele llama3 et peut accepter des fichiers de Google Drive en tant que RAG
+
 ## Technologies Utilisées & Prérequis
 
 - Python3
